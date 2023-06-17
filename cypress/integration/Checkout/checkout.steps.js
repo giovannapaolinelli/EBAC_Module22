@@ -12,8 +12,6 @@ Given('I visit EBAC Store products page', () => {
 
 When('I add product to the cart and complete shopping', () => {
     cy.addProduct()
-    // var produto = ['Abominable Hoodie', 'M', 'Red', 4]
-    // cy.addProdutos(produto[0], produto[1], produto[2], produto[3])
     cy.checkout()
 })
 
