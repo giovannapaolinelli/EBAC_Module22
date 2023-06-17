@@ -1,16 +1,38 @@
 /// <reference types="cypress" />
 
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
-const { dashboardPage } = require('../../support/pages')
+const { CheckoutPage } = require('../../support/pages')
+import { orderPage } from "../../support/pages/order.page";
 
-Given('I visit EBAC Store', () => {
-    cy.visit('/')
+const address = require('../../fixtures/dados.json')
+
+Given('I visit EBAC Store products page', () => {
+    cy.visit('/produtos/')
 })
 
-When("I add product to the cart and complete shopping", () => {
-    cy.login(user, pass)
+When('I add product to the cart and complete shopping', () => {
+    cy.addProduct()
+    // var produto = ['Abominable Hoodie', 'M', 'Red', 4]
+    // cy.addProdutos(produto[0], produto[1], produto[2], produto[3])
+    cy.checkout()
+})
+
+When('I fill checkout', () => {
+    CheckoutPage.fillCheckout(
+        address[1].nome,
+        address[1].sobrenome,
+        address[1].empresa,
+        address[1].pais,
+        address[1].endereco,
+        address[1].complemento,
+        address[1].cidade,
+        address[1].estado,
+        address[1].cep,
+        address[1].telefone,
+        address[1].email)
+
 })
 
 Then('a success screen must appear', () => {
-    dashboardPage.siteName.should("be.visible")
+    orderPage.message.should('contain', 'Obrigado. Seu pedido foi recebido.')
 })

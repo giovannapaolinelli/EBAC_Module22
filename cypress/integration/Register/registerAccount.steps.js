@@ -2,19 +2,19 @@
 var faker = require('faker');
 
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
-const { register, dashboardPage } = require('../../support/pages')
+import { accountPage } from "../../support/pages/account.page";
+const { RegisterPage } = require('../../support/pages')
 
-Given("I dashboard", () => {
+Given("I visit EBAC Store register page", () => {
     cy.visit('/my-account/')
 });
 
 When('I register with email and password', () => {
     let emailFaker = faker.internet.email()
-    let pass = faker.internet.password()
-    register.RegisterPage(emailFaker, pass)
+    let passFaker = faker.internet.password()
+    RegisterPage.register(emailFaker, passFaker)
 });
 
 Then('My account page must be visible', () => {
-    loginPage.login(data.usuario, data.senha)
-    dashboardPage.siteName.should("be.visible")
+    accountPage.pageTitle.should("be.visible")
 });

@@ -1,13 +1,8 @@
 {
-  "name": "sample-cy-bdd-cucumber",
-  "version": "1.0.0",
-  "description": "Exemplos de organização de testes utilizando BDD com Cucumber",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run"
   },
-  "author": "ernestosbarbosa",
-  "license": "ISC",
   "dependencies": {
     "cypress": "^9.7.0",
     "faker": "^5.5.3"
