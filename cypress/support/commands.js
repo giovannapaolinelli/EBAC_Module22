@@ -31,6 +31,14 @@ Cypress.Commands.add('checkout', () => {
     cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .checkout').click()
 })
 
+Cypress.Commands.add('deleteProduct', () => {
+    cy.get('.remove > .fa').click()
+})
+
+Cypress.Commands.add('decreaseProduct', () => {
+    cy.get('.minus').click()
+})
+
 Cypress.Commands.add('addProduct', () => {
     const fd = new FormData()
     fd.append('attribute_size', 'S')
