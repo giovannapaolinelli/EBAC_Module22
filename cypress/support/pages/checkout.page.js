@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 class CheckoutPage {
+        get fields() { return cy.get('.woocommerce-billing-fields [for]')}
         get #firstName() { return cy.get("#billing_first_name")}
         get #lastName() { return cy.get('#billing_last_name')}
         get #company() { return cy.get('#billing_company')}
@@ -28,8 +29,13 @@ class CheckoutPage {
         this.#email.type(email)
         this.#terms.click()
         this.#order.click()
-    }
+    };
 
+    verifyField(){
+        this.fields.each(field =>{
+            cy.get(field).should('be.visible')
+        })
+    }
 }
 
 module.exports = new CheckoutPage()

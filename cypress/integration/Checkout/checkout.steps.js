@@ -3,6 +3,7 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 const { CheckoutPage } = require('../../support/pages')
 import { orderPage } from "../../support/pages/order.page";
+import checkoutPage from "../../support/pages/checkout.page";
 
 const address = require('../../fixtures/dados.json')
 
@@ -16,7 +17,7 @@ When('I add product to the cart and complete shopping', () => {
 })
 
 When('I fill checkout', () => {
-    CheckoutPage.fillCheckout(
+    checkoutPage.fillCheckout(
         address[1].nome,
         address[1].sobrenome,
         address[1].empresa,
@@ -28,7 +29,7 @@ When('I fill checkout', () => {
         address[1].cep,
         address[1].telefone,
         address[1].email)
-
+    checkoutPage.verifyField()
 })
 
 Then('a success screen must appear', () => {
