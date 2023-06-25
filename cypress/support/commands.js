@@ -33,6 +33,16 @@ Cypress.Commands.add('checkout', () => {
 
 Cypress.Commands.add('deleteProduct', () => {
     cy.get('.remove > .fa').click()
+    cy.intercept('POST', '/?wc-ajax=get_refreshed_fragments', (req) => {
+    req.reply({
+        status: 200,
+        body: {
+        "fragments": {
+            "div.widget_shopping_cart_content": "<div class=\"widget_shopping_cart_content\">\r\n<div class=\"mini_cart_content\">\r\n\t<div class=\"mini_cart_inner\">\r\n\t\t<div class=\"mcart-border\">\r\n\t\t\t\t\t\t\t<ul class=\"cart_empty \">\r\n\t\t\t\t\t<li>You have no items in your shopping cart<\/li>\r\n\t\t\t\t\t<li class=\"total\">Subtotal: <span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#82;&#36;<\/span>0,00<\/bdi><\/span><\/li>\r\n\t\t\t\t<\/ul>\r\n\t\t\t\r\n\t\t\t\t\t\t<div class=\"clearfix\"><\/div>\r\n\t\t<\/div>\r\n\t<\/div>\r\n<\/div>\r\n<\/div>",
+        }
+    }
+    })
+    })
 })
 
 Cypress.Commands.add('decreaseProduct', () => {
