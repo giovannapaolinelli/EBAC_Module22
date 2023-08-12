@@ -1,7 +1,7 @@
 {
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --reporter mochawesome --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true",
+    "test": "cypress run --browser chrome --reporter mochawesome --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true",
     "test:common": "npx cypress run"
   },
   "dependencies": {
